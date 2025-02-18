@@ -31,7 +31,7 @@ export default function Hero() {
           <img
             src="https://philcantor.com/images/05-Church-St-Sat-Nite-5-30-15_web-1024x680.jpg"
             alt="Community engagement"
-            className="max-w-full h-auto rounded"
+            className="max-w-full h-auto rounded filter drop-shadow-[0_2px_2px_white] border-4 border-gray-200"
           />
         </div>
       </div>

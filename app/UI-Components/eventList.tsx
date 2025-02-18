@@ -1,6 +1,7 @@
 import { useState } from "react";
 import EventCard from "./eventCard";
 
+
 type Event = {
   id: number;
   title: string;
@@ -45,7 +46,8 @@ export default function EventList() {
   ];
 
   return (
-    <section className="bg-gradient-to-bl from-gray-800 via-black to-gray-800 container mx-auto pt-0 py-12">
+    <section className="bg-gradient-to-bl from-gray-800 via-black to-gray-800 pt-0 py-12">
+      <div className="container mx-auto">
       <div className="flex items-center justify-between mb-8">
         <h2 className="text-3xl font-bold text-white">Events</h2>
         <select
@@ -62,6 +64,7 @@ export default function EventList() {
         {events.map((event) => (
           <EventCard key={event.id} event={event} />
         ))}
+      </div>
       </div>
     </section>
   );

@@ -22,7 +22,8 @@ export default function PostList() {
         "The local art scene is thriving with new exhibitions and galleries opening downtown.",
       author: "Jane Doe",
       date: "2025-02-16",
-      imageUrl: "https://visitmorristowntn.com/wp-content/uploads/2024/12/Gallery-copy-1.jpg",
+      imageUrl:
+        "https://visitmorristowntn.com/wp-content/uploads/2024/12/Gallery-copy-1.jpg",
     },
     {
       id: 2,
@@ -47,9 +48,12 @@ export default function PostList() {
   ];
 
   return (
-    <section className="container mx-auto px-4 pt-0 py-12 bg-gradient-to-br from-gray-800 via-black to-gray-800">
+    <section className="px-4 pt-0 py-12 bg-gradient-to-br from-gray-800 via-black to-gray-800">
+     <div className="container mx-auto"> 
       <div className="flex items-center justify-between mb-8">
-        <h2 className="text-3xl font-bold text-white">What's new in Montclair?</h2>
+        <h2 className="text-3xl font-bold text-white">
+          What's new in Montclair?
+        </h2>
         <select
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
@@ -64,6 +68,7 @@ export default function PostList() {
         {posts.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}
+      </div>
       </div>
     </section>
   );
