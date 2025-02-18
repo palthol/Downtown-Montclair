@@ -1,5 +1,8 @@
 import type { Route } from "./+types/home";
 import { Welcome } from "../welcome/welcome";
+import NavBar from "../UI-Components/navbar";
+import Footer from "../UI-Components/footer";
+import Hero from "~/UI-Components/hero";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -9,5 +12,15 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  return <Welcome />;
+  return (
+    <div className="flex flex-col min-h-screen">
+      <NavBar />
+
+      <main className="flex-grow">
+        <Hero />;
+        <Welcome />
+      </main>
+      <Footer />
+    </div>
+  );
 }
