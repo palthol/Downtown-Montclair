@@ -1,12 +1,14 @@
 // src/app/components/NavBar.tsx
+
+// ! lets make this navbar kind of opaque, i want the blue gradient to be slightly visble on the navbar.
 export default function NavBar() {
     return (
-      <header className="bg-white shadow border-b border-red-600">
+      <header className="bg-white shadow border-b border-gray-600">
         <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="text-2xl font-bold text-blue-600">Project Montclair.</div>
           <div className="flex items-center space-x-4">
             <a href="/" className="text-gray-600 hover:text-blue-600">Home</a>
-            <a href="/events" className="text-gray-600 hover:text-blue-600">Events</a>
+            <a href="/events" className="text-gray-600 hover:text-blue-600">Hosting</a>
             <a href="/about" className="text-gray-600 hover:text-blue-600">About</a>
             <a href="/contact" className="text-gray-600 hover:text-blue-600">Contact</a>
             {/* Profile Icon */}
