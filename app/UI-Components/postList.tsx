@@ -13,7 +13,6 @@ type Post = {
 export default function PostList() {
   const [filter, setFilter] = useState("all");
 
-  // Dummy post data with image URLs and authors
   const posts: Post[] = [
     {
       id: 1,
@@ -48,27 +47,27 @@ export default function PostList() {
   ];
 
   return (
-    <section className="px-4 pt-0 py-12 bg-gradient-to-br from-gray-800 via-black to-gray-800">
-     <div className="container mx-auto"> 
-      <div className="flex items-center justify-between mb-8">
-        <h2 className="text-3xl font-bold text-white">
-          What's new in Montclair?
-        </h2>
-        <select
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-          className="p-2 bg-white text-gray-800 rounded"
-        >
-          <option value="all">All Posts</option>
-          <option value="reviews">Reviews</option>
-          <option value="posts">Posts</option>
-        </select>
-      </div>
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post) => (
-          <PostCard key={post.id} post={post} />
-        ))}
-      </div>
+    <section className="bg-gradient-to-br from-[#1F3B73] via-[#FF6F61] to-[#F5F5F5] px-4 pt-12 pb-12">
+      <div className="container mx-auto"> 
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-3xl font-bold text-white">
+            What's New in Montclair?
+          </h2>
+          <select
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            className="p-2 bg-white text-[#1F3B73] rounded"
+          >
+            <option value="all">All Posts</option>
+            <option value="reviews">Reviews</option>
+            <option value="posts">Posts</option>
+          </select>
+        </div>
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post) => (
+            <PostCard key={post.id} post={post} />
+          ))}
+        </div>
       </div>
     </section>
   );

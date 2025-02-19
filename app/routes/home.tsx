@@ -1,5 +1,4 @@
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
 import NavBar from "../UI-Components/navbar";
 import Footer from "../UI-Components/footer";
 import Hero from "~/UI-Components/hero";

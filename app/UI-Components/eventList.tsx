@@ -1,7 +1,6 @@
 import { useState } from "react";
 import EventCard from "./eventCard";
 
-
 type Event = {
   id: number;
   title: string;
@@ -14,7 +13,6 @@ type Event = {
 export default function EventList() {
   const [eventType, setEventType] = useState("upcoming");
 
-  // Dummy event data with image URLs and addresses
   const events: Event[] = [
     {
       id: 1,
@@ -46,25 +44,25 @@ export default function EventList() {
   ];
 
   return (
-    <section className="bg-gradient-to-bl from-gray-800 via-black to-gray-800 pt-0 py-12">
+    <section className="bg-gradient-to-bl from-[#1F3B73] via-[#2E7D32] to-[#F5F5F5] pt-12 pb-12">
       <div className="container mx-auto">
-      <div className="flex items-center justify-between mb-8">
-        <h2 className="text-3xl font-bold text-white">Events</h2>
-        <select
-          value={eventType}
-          onChange={(e) => setEventType(e.target.value)}
-          className="p-2 bg-white text-gray-800 rounded"
-        >
-          <option value="upcoming">Upcoming Events</option>
-          <option value="trending">Trending Events</option>
-          <option value="closest">Closest to you</option>
-        </select>
-      </div>
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {events.map((event) => (
-          <EventCard key={event.id} event={event} />
-        ))}
-      </div>
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-3xl font-bold text-white">Events</h2>
+          <select
+            value={eventType}
+            onChange={(e) => setEventType(e.target.value)}
+            className="p-2 bg-white text-[#1F3B73] rounded"
+          >
+            <option value="upcoming">Upcoming Events</option>
+            <option value="trending">Trending Events</option>
+            <option value="closest">Closest to You</option>
+          </select>
+        </div>
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {events.map((event) => (
+            <EventCard key={event.id} event={event} />
+          ))}
+        </div>
       </div>
     </section>
   );
