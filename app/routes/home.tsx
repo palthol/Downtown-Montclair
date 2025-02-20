@@ -4,7 +4,7 @@ import Footer from "../UI-Components/footer";
 import Hero from "~/UI-Components/hero";
 import EventList from "~/UI-Components/eventList";
 import PostList from "~/UI-Components/postList";
-import { ScrollGradientSection } from "~/scrollGradientSection";
+
 
 export function meta({}: Route.MetaArgs) {
   return [
