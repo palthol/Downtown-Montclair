@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "./section-overlap.css";
+@import "./animated-gradient.css";
 
 @theme {
   --font-headline: 'Montserrat', sans-serif;

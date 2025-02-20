@@ -1,5 +1,6 @@
 import { useState } from "react";
 import EventCard from "./eventCard";
+import FeaturedEventCard from "./FeaturedEventCard";
 
 type Event = {
   id: number;
@@ -41,10 +42,25 @@ export default function EventList() {
       imageUrl:
         "https://fastly.picsum.photos/id/24/4855/1803.jpg?hmac=ICVhP1pUXDLXaTkgwDJinSUS59UWalMxf4SOIWb9Ui4",
     },
+    {
+      id: 4,
+      title: "Montclair Porchfest",
+      description:
+        "Experience an unforgettable night of family-friendly, FREE Music Festival in Montclair NJ",
+      location: "Jazz Lounge",
+      address: "123 Harmony Avenue, Montclair, NJ 07042",
+      imageUrl:
+        "https://img1.wsimg.com/isteam/ip/3459abab-864c-4a20-801d-45e33e14dd6f/Montclair%20Porchfest%20Logo.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1160,h:1547",
+    },
   ];
 
+  // Find the featured event (with id 4)
+  const featuredEvent = events.find((event) => event.id === 4);
+  // Filter out the featured event for the grid
+  const regularEvents = events.filter((event) => event.id !== 4);
+
   return (
-    <section className="bg-gradient-to-bl from-[#1F3B73] via-[#2E7D32] to-[#F5F5F5] pt-12 pb-12">
+    <section className="pt-12 pb-12">
       <div className="container mx-auto">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-3xl font-bold text-white">Events</h2>
@@ -58,8 +74,17 @@ export default function EventList() {
             <option value="closest">Closest to You</option>
           </select>
         </div>
+
+        {/* Render the featured event above the grid */}
+        {featuredEvent && (
+          <div className="mb-12">
+            <FeaturedEventCard event={featuredEvent} />
+          </div>
+        )}
+
+        {/* Render the remaining events in a grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {events.map((event) => (
+          {regularEvents.map((event) => (
             <EventCard key={event.id} event={event} />
           ))}
         </div>

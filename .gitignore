@@ -4,3 +4,5 @@
 # React Router
 /.react-router/
 /build/
+
+app/UI-Components/oldstyling/oldstyling.tsx
