@@ -53,7 +53,7 @@ export default function PostList() {
       author: "Emily Reed",
       date: "2025-02-13",
       imageUrl:
-        "https://via.placeholder.com/800x600?text=New+Bistro",
+        "https://www.lancastereaglegazette.com/gcdn/presto/2020/10/26/PLAN/0a3f4bce-38a2-48a6-8e00-a4e35668a18e-Hotel_Bistro.jpg",
     },
   ];
 
