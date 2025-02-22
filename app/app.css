@@ -1,20 +1,28 @@
 @import "tailwindcss";
 @import "./animated-gradient.css";
 
+@custom-variant dark (&:where(.dark, .dark *));
 @theme {
   --font-headline: 'Montserrat', sans-serif;
   --font-body: 'Open Sans', sans-serif;
 }
 
+/* Light mode styles */
 html,
 body {
   @apply bg-[#F5F5F5] text-gray-800;
   font-family: var(--font-body);
 }
 
-/* This creates a feathered blend between sections. Should be using this sparingly */
+/* Dark mode overrides */
+html.dark,
+body.dark {
+  @apply bg-[#1A202C] text-gray-100;
+}
 
 
+
+/* Existing gradient section styles remain unchanged */
 .gradient-section {
   position: relative;
 }
