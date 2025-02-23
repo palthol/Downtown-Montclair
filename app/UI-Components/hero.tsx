@@ -9,7 +9,7 @@ export default function Hero() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="/3121459-uhd_3840_2160_24fps.mp4" type="video/mp4" />
+        <source src="/draftVideo.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
