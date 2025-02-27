@@ -1,7 +1,7 @@
 import type { Route } from "./+types/entertainment";
-import NavBar from "../UI-Components/navbar";
-import Footer from "../UI-Components/footer";
-import EntertainmentCardList from "../UI-Components/entertainmentCardList";
+import NavBar from "../components/UI-Components/navbar";
+import Footer from "../components/UI-Components/footer";
+import EntertainmentCardList from "../components/UI-Components/entertainmentCardList";
 
 
 export function meta({}: Route.MetaArgs) {

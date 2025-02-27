@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false); // state for modal
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,10 +14,10 @@ export default function NavBar() {
       }
     };
     window.addEventListener("scroll", handleScroll);
-    
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  
+
   return (
     <header className="sticky top-0 z-50 bg-white/90 shadow border-b border-gray-300 transition-all duration-500">
       <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
@@ -68,6 +69,21 @@ export default function NavBar() {
               />
             </svg>
           </button>
+          {/* Profile Icon Button */}
+          <button
+            className="text-gray-600 hover:text-[#1F3B73]"
+            aria-label="Profile"
+            onClick={() => setAuthModalOpen(true)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+            </svg>
+          </button>
           {/* Hamburger Icon for Mobile (visible on small screens only) */}
           <div className="md:hidden">
             <button
@@ -97,11 +113,7 @@ export default function NavBar() {
                   stroke="currentColor"
                   strokeWidth={2}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               )}
             </button>
@@ -125,6 +137,25 @@ export default function NavBar() {
             <a href="/maps" className="text-gray-700 hover:text-[#1F3B73]">
               Maps
             </a>
+          </div>
+        </div>
+      )}
+
+      {/* Registration/Login Modal */}
+      {authModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white rounded p-6 w-80">
+            <h2 className="text-xl font-bold mb-4">Sign In / Register</h2>
+            {/* Modal Content: Replace with your auth form */}
+            <p className="mb-4 text-gray-700">
+              This is a placeholder for your login/registration form.
+            </p>
+            <button
+              onClick={() => setAuthModalOpen(false)}
+              className="bg-[#1F3B73] text-white px-4 py-2 rounded hover:bg-[#16305c]"
+            >
+              Close
+            </button>
           </div>
         </div>
       )}

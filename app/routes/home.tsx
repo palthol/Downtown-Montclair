@@ -1,9 +1,11 @@
 import type { Route } from "./+types/home";
-import NavBar from "../UI-Components/navbar";
-import Footer from "../UI-Components/footer";
-import Hero from "~/UI-Components/hero";
-import EventList from "~/UI-Components/eventList";
-import PostList from "~/UI-Components/postList";
+import NavBar from "../components/UI-Components/navbar";
+import Footer from "../components/UI-Components/footer";
+import Hero from "~/components/UI-Components/hero";
+import EventList from "~/components/UI-Components/eventList";
+import PostList from "~/components/UI-Components/postList";
+import TestProfiles from "~/components/profiles";
+
 
 
 export function meta({}: Route.MetaArgs) {
@@ -23,7 +25,8 @@ export default function Home() {
         <Hero />
         <EventList />
         <PostList/>
-       
+       {/* test */}
+       <TestProfiles/>
       </main>
       <Footer />
     </div>
