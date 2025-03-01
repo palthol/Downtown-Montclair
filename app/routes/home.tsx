@@ -4,7 +4,7 @@ import Footer from "../components/UI-Components/footer";
 import Hero from "~/components/UI-Components/hero";
 import EventList from "~/components/UI-Components/eventList";
 import PostList from "~/components/UI-Components/postList";
-import TestProfiles from "~/components/profiles";
+
 
 
 
@@ -26,7 +26,7 @@ export default function Home() {
         <EventList />
         <PostList/>
        {/* test */}
-       <TestProfiles/>
+    
       </main>
       <Footer />
     </div>
