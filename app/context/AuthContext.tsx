@@ -5,7 +5,6 @@ import { supabase } from '~/supabase/supabaseClient';
 export interface UserProfile {
   id: string;
   email: string;
-  // Extra profile fields can be added later
   accountType?: 'personal' | 'business';
   name?: string;
   profilePicture?: string;
@@ -40,14 +39,18 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
   useEffect(() => {
     // Subscribe to auth state changes from Supabase
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log("onAuthStateChange event (expected values like SIGN_IN, SIGN_OUT, etc.):", event);
+      console.log("onAuthStateChange session (expected: Session object with user data if authenticated):", session);
       if (session?.user) {
         // Optionally, fetch extra profile details as needed
         setUser({
           id: session.user.id,
           email: session.user.email ?? '',
+          
         });
       } else {
         setUser(null);
+        console.log("No session found - user is set to null.");
       }
       setLoading(false);
     });
@@ -63,3 +66,4 @@ export function AuthProvider({ children }: { children: ReactNode }): React.React
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
+

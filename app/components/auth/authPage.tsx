@@ -87,10 +87,13 @@ function LoginForm(): React.ReactElement {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    console.log("Attempting to sign in with email:", email);
     const { data, error: authError } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
+    console.log("Sign in response data (expected Session object if successful):", data);
+  console.log("Sign in error (expected null on success):", authError);
     if (authError || !data.session) {
       setError(authError?.message ?? 'Login failed. Please try again.');
     } else {
