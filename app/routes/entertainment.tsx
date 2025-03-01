@@ -1,7 +1,8 @@
 import type { Route } from "./+types/entertainment";
-import NavBar from "../components/UI-Components/navbar";
-import Footer from "../components/UI-Components/footer";
-import EntertainmentCardList from "../components/UI-Components/entertainmentCardList";
+import NavBar from "~/components/UI-Components/navbar";
+import Footer from "~/components/UI-Components/footer";
+import EntertainmentCardList from "~/components/UI-Components/entertainmentCardList";
+import { AuthProvider } from "~/context/AuthContext";
 
 
 export function meta({}: Route.MetaArgs) {
@@ -13,6 +14,7 @@ export function meta({}: Route.MetaArgs) {
 
 export default function entertainment() {
   return (
+    <AuthProvider>
     <div className="flex flex-col min-h-screen">
       <NavBar />
 
@@ -35,5 +37,6 @@ export default function entertainment() {
 
       <Footer />
     </div>
+    </AuthProvider>
   );
 }
