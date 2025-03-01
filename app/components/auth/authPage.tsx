@@ -11,8 +11,6 @@ export default function AuthPage(): React.ReactElement {
   // Handler to go back home
   const handleBack = () => navigate('/');
 
-  // When activeTab changes, we could add additional logic if needed.
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="relative bg-white rounded shadow-lg p-6 w-full max-w-md overflow-hidden">
@@ -27,9 +25,13 @@ export default function AuthPage(): React.ReactElement {
         {/* Switcher Tabs */}
         <AuthSwitcher activeTab={activeTab} setActiveTab={setActiveTab} />
 
-        {/* Render the corresponding modal form with animation */}
+        {/* Render the corresponding modal form with simple animation */}
         <div className="relative">
-          {activeTab === 'login' ? <LoginForm key="login" /> : <RegistrationForm key="register" />}
+          {activeTab === 'login' ? (
+            <LoginForm key="login" />
+          ) : (
+            <RegistrationForm key="register" />
+          )}
         </div>
       </div>
     </div>
@@ -47,7 +49,9 @@ function AuthSwitcher({ activeTab, setActiveTab }: AuthSwitcherProps): React.Rea
       <button
         onClick={() => setActiveTab('login')}
         className={`flex-1 py-2 text-center transition-colors duration-300 ${
-          activeTab === 'login' ? 'border-b-2 border-blue-500 font-semibold text-blue-600' : 'text-gray-500'
+          activeTab === 'login'
+            ? 'border-b-2 border-blue-500 font-semibold text-blue-600'
+            : 'text-gray-500'
         }`}
       >
         Login
@@ -55,7 +59,9 @@ function AuthSwitcher({ activeTab, setActiveTab }: AuthSwitcherProps): React.Rea
       <button
         onClick={() => setActiveTab('register')}
         className={`flex-1 py-2 text-center transition-colors duration-300 ${
-          activeTab === 'register' ? 'border-b-2 border-blue-500 font-semibold text-blue-600' : 'text-gray-500'
+          activeTab === 'register'
+            ? 'border-b-2 border-blue-500 font-semibold text-blue-600'
+            : 'text-gray-500'
         }`}
       >
         Register
@@ -86,9 +92,8 @@ function LoginForm(): React.ReactElement {
       password,
     });
     if (authError || !data.session) {
-      setError(authError?.message || "Login failed. Please try again.");
+      setError(authError?.message || 'Login failed. Please try again.');
     } else {
-      // On successful login, redirect to home.
       navigate('/');
     }
     setLoading(false);
@@ -107,6 +112,7 @@ function LoginForm(): React.ReactElement {
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        autoComplete="email"
         className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         required
       />
@@ -115,6 +121,7 @@ function LoginForm(): React.ReactElement {
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        autoComplete="current-password"
         className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         required
       />
@@ -174,6 +181,7 @@ function RegistrationForm(): React.ReactElement {
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        autoComplete="email"
         className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         required
       />
@@ -182,6 +190,7 @@ function RegistrationForm(): React.ReactElement {
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        autoComplete="new-password"
         className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         required
       />
@@ -190,6 +199,7 @@ function RegistrationForm(): React.ReactElement {
         placeholder="Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        autoComplete="name"
         className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         required
       />
