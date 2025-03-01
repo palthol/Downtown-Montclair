@@ -169,33 +169,30 @@ function RegistrationForm(): React.ReactElement {
         </div>
       )}
       <input
-  ref={emailRef}
-  type="email"
-  placeholder="Email"
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-  autoComplete="email"
-  className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-  required
-/>
-<input
-  type="password"
-  placeholder="Password"
-  value={password}
-  onChange={(e) => setPassword(e.target.value)}
-  autoComplete={activeTab === 'login' ? "current-password" : "new-password"}
-  className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-  required
-/>
-<input
-  type="text"
-  placeholder="Name"
-  value={name}
-  onChange={(e) => setName(e.target.value)}
-  autoComplete="name"
-  className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-  required
-/>
+        ref={emailRef}
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        required
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        required
+      />
       <button
         type="submit"
         disabled={loading}
