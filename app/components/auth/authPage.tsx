@@ -92,7 +92,7 @@ function LoginForm(): React.ReactElement {
       password,
     });
     if (authError || !data.session) {
-      setError(authError?.message || 'Login failed. Please try again.');
+      setError(authError?.message ?? 'Login failed. Please try again.');
     } else {
       navigate('/');
     }
