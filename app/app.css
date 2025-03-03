@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "./animated-gradient.css";
+
 
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {

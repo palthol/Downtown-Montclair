@@ -1,7 +1,8 @@
 import type { Route } from "./+types/food";
-import NavBar from "../UI-Components/navbar";
-import Footer from "../UI-Components/footer";
-import FoodCardList from "../UI-Components/foodCardList";
+import NavBar from "~/components/UI-Components/navbar";
+import Footer from "~/components/UI-Components/footer";
+import FoodCardList from "~/components/UI-Components/foodCardList";
+import { AuthProvider } from "~/context/AuthContext";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -12,6 +13,7 @@ export function meta({}: Route.MetaArgs) {
 
 export default function food() {
   return (
+    <AuthProvider>
     <div className="flex flex-col min-h-screen">
       <NavBar />
 
@@ -22,5 +24,6 @@ export default function food() {
 
       <Footer />
     </div>
+    </AuthProvider>
   );
 }
