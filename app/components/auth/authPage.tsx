@@ -104,39 +104,39 @@ function LoginForm(): React.ReactElement {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 transition-all duration-300 ease-in-out">
-      {error && (
-        <div role="alert" className="p-3 border border-red-500 text-red-500 rounded">
-          {error}
-        </div>
-      )}
-      <input
-        ref={emailRef}
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        autoComplete="email"
-        className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        autoComplete="current-password"
-        className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        required
-      />
-      <button
-        type="submit"
-        disabled={loading}
-        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-300"
-      >
-        {loading ? 'Logging in...' : 'Login'}
-      </button>
-    </form>
-  );
+    {error && (
+      <div role="alert" className="p-3 border border-red-500 text-red-500 rounded">
+        {error}
+      </div>
+    )}
+    <input
+      ref={emailRef}
+      type="email"
+      placeholder="Email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      autoComplete="email"
+      className="w-full border p-3 sm:p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
+      required
+    />
+    <input
+      type="password"
+      placeholder="Password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      autoComplete="current-password"
+      className="w-full border p-3 sm:p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
+      required
+    />
+    <button
+      type="submit"
+      disabled={loading}
+      className="w-full bg-blue-600 text-white py-3 sm:py-2 rounded hover:bg-blue-700 transition duration-300 text-lg"
+    >
+      {loading ? 'Logging in...' : 'Login'}
+    </button>
+  </form>
+);
 }
 
 function RegistrationForm(): React.ReactElement {
@@ -173,46 +173,46 @@ function RegistrationForm(): React.ReactElement {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 transition-all duration-300 ease-in-out">
-      {error && (
-        <div role="alert" className="p-3 border border-red-500 text-red-500 rounded">
-          {error}
-        </div>
-      )}
-      <input
-        ref={emailRef}
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        autoComplete="email"
-        className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        autoComplete="new-password"
-        className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        required
-      />
-      <input
-        type="text"
-        placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        autoComplete="name"
-        className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        required
-      />
-      <button
-        type="submit"
-        disabled={loading}
-        className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition duration-300"
-      >
-        {loading ? 'Registering...' : 'Register'}
-      </button>
-    </form>
-  );
+    {error && (
+      <div role="alert" className="p-3 border border-red-500 text-red-500 rounded">
+        {error}
+      </div>
+    )}
+    <input
+      ref={emailRef}
+      type="email"
+      placeholder="Email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      autoComplete="email"
+      className="w-full border p-3 sm:p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
+      required
+    />
+    <input
+      type="password"
+      placeholder="Password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      autoComplete="new-password"
+      className="w-full border p-3 sm:p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
+      required
+    />
+    <input
+      type="text"
+      placeholder="Name"
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+      autoComplete="name"
+      className="w-full border p-3 sm:p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
+      required
+    />
+    <button
+      type="submit"
+      disabled={loading}
+      className="w-full bg-green-600 text-white py-3 sm:py-2 rounded hover:bg-green-700 transition duration-300 text-lg"
+    >
+      {loading ? 'Registering...' : 'Register'}
+    </button>
+  </form>
+);
 }
