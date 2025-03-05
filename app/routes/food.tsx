@@ -1,8 +1,9 @@
 import type { Route } from "./+types/food";
 import NavBar from "~/components/UI-Components/navbar";
 import Footer from "~/components/UI-Components/footer";
-import FoodCardList from "~/components/UI-Components/foodCardList";
+// import FoodCardList from "~/components/UI-Components/foodCardList";
 import { AuthProvider } from "~/context/AuthContext";
+import RestaurantList from "~/components/UI-Components/RestuarantList";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -19,7 +20,8 @@ export default function food() {
 
       {/* Main content area with FoodCardList */}
       <main className="flex-grow container mx-auto px-6 py-12">
-        <FoodCardList />
+        {/* <FoodCardList /> */}
+        <RestaurantList />
       </main>
 
       <Footer />
