@@ -1,8 +1,9 @@
 import type { Route } from "./+types/entertainment";
 import NavBar from "~/components/UI-Components/navbar";
 import Footer from "~/components/UI-Components/footer";
-import EntertainmentCardList from "~/components/UI-Components/entertainmentCardList";
+// import EntertainmentCardList from "~/components/UI-Components/entertainmentCardList";
 import { AuthProvider } from "~/context/AuthContext";
+import EntertainmentVenueList from "~/components/UI-Components/EntertainmentVenueList";
 
 
 export function meta({}: Route.MetaArgs) {
@@ -32,7 +33,8 @@ export default function entertainment() {
 
       {/* Grid of Entertainment / Place Cards */}
       <main className="flex-grow container mx-auto px-6 py-12">
-      <EntertainmentCardList />
+      {/* <EntertainmentCardList /> */}
+      <EntertainmentVenueList />
       </main>
 
       <Footer />
