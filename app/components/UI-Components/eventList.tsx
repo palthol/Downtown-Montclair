@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import PorchfestCard from './porchfestcard';
-import StPatricksCard from './stpatricksdaycard';
 import FIFAMontclairCard from './fifamontclaircard';
 
 type Event = {
