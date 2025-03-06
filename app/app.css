@@ -10,7 +10,7 @@
 /* Light mode styles */
 html,
 body {
-  @apply bg-[#F5F5F5] text-gray-800;
+  @apply bg-[#ffffff] text-gray-800;
   font-family: var(--font-body);
 }
 
@@ -21,20 +21,19 @@ body.dark {
 }
 
 
-
-/* Existing gradient section styles remain unchanged */
-.gradient-section {
-  position: relative;
+/* Custom animation keyframes */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.gradient-section::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3rem; /* Adjust the blend height as needed */
-  background: linear-gradient(to bottom, transparent, #F5F5F5); /* Off-White blending */
-  pointer-events: none;
-  z-index: 1;
+/* Animation utility classes */
+.animate-fadeInUp {
+  animation: fadeInUp 0.3s ease-out;
 }

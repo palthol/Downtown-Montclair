@@ -1,6 +1,6 @@
-import { useState } from "react";
-import EventCard from "./eventCard";
-import FeaturedEventCard from "./FeaturedEventCard";
+import { useState } from 'react';
+import PorchfestCard from './porchfestcard';
+import FIFAMontclairCard from './fifamontclaircard';
 
 type Event = {
   id: number;
@@ -13,80 +13,36 @@ type Event = {
 
 export default function EventList() {
   const [eventType, setEventType] = useState("upcoming");
-
-  const events: Event[] = [
-    {
-      id: 1,
-      title: "Community Cafe Meetup",
-      description: "Join us for a fun community gathering.",
-      location: "Montclair Center",
-      address: "10 Park Street, Montclair, NJ 07042",
-      imageUrl:
-        "https://fastly.picsum.photos/id/42/3456/2304.jpg?hmac=dhQvd1Qp19zg26MEwYMnfz34eLnGv8meGk_lFNAJR3g",
-    },
-    {
-      id: 2,
-      title: "Art Exhibition",
-      description: "Explore local art and creativity.",
-      location: "Montclair Art Museum",
-      address: "3 S Mountain Ave, Montclair, NJ 07042",
-      imageUrl:
-        "https://fastly.picsum.photos/id/36/4179/2790.jpg?hmac=OCuYYm0PkDCMwxWhrtoSefG5UDir4O0XCcR2x-aSPjs",
-    },
-    {
-      id: 3,
-      title: "Library Reading",
-      description: "Join a reading session at the library.",
-      location: "Montclair Public Library",
-      address: "185 Bloomfield Ave, Montclair, NJ 07042",
-      imageUrl:
-        "https://fastly.picsum.photos/id/24/4855/1803.jpg?hmac=ICVhP1pUXDLXaTkgwDJinSUS59UWalMxf4SOIWb9Ui4",
-    },
-    {
-      id: 4,
-      title: "Montclair Porchfest",
-      description:
-        "Experience an unforgettable night of family-friendly, FREE Music Festival in Montclair NJ",
-      location: "Jazz Lounge",
-      address: "123 Harmony Avenue, Montclair, NJ 07042",
-      imageUrl:
-        "https://img1.wsimg.com/isteam/ip/3459abab-864c-4a20-801d-45e33e14dd6f/Montclair%20Porchfest%20Logo.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1160,h:1547",
-    },
-  ];
-
-  // Find the featured event (with id 4)
-  const featuredEvent = events.find((event) => event.id === 4);
-  // Filter out the featured event for the grid
-  const regularEvents = events.filter((event) => event.id !== 4);
-
+  
   return (
-    <section className="pt-12 pb-12">
-      <div className="container mx-auto">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-3xl font-bold text-white">Events</h2>
-          <select
-            value={eventType}
-            onChange={(e) => setEventType(e.target.value)}
-            className="p-2 bg-white text-[#1F3B73] rounded"
+    <section className="py-16 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-8" style={{ fontFamily: 'var(--font-headline)' }}>
+          Upcoming Events
+        </h2>
+        
+        {/* Event Type Selector */}
+        <div className="flex justify-center mb-10">
+          <button 
+            className={`px-6 py-2 mx-2 rounded-full ${eventType === "upcoming" ? "bg-[#1F3B73] text-white" : "bg-gray-200"}`}
+            onClick={() => setEventType("upcoming")}
           >
-            <option value="upcoming">Upcoming Events</option>
-            <option value="trending">Trending Events</option>
-            <option value="closest">Closest to You</option>
-          </select>
+            Upcoming
+          </button>
+          <button 
+            className={`px-6 py-2 mx-2 rounded-full ${eventType === "featured" ? "bg-[#1F3B73] text-white" : "bg-gray-200"}`}
+            onClick={() => setEventType("featured")}
+          >
+            Featured
+          </button>
         </div>
+        
+        {/* Events Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* PorchfestCard */}
+          <PorchfestCard />
 
-        {/* Render the featured event above the grid */}
-        {featuredEvent && (
-          <div className="mb-12">
-            <FeaturedEventCard event={featuredEvent} />
-          </div>
-        )}
-
-        {/* Render the remaining events in a grid */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {regularEvents.map((event) => (
-            <EventCard key={event.id} event={event} />
-          ))}
+          <FIFAMontclairCard />
         </div>
       </div>
     </section>

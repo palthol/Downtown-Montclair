@@ -12,7 +12,7 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function food() {
+export default function Food() {
   return (
     <AuthProvider>
     <div className="flex flex-col min-h-screen">

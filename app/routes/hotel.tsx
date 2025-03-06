@@ -11,7 +11,7 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function hotel() {
+export default function Hotel() {
   return (
 <AuthProvider>
 <div className="flex flex-col min-h-screen">

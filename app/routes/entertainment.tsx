@@ -13,7 +13,7 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function entertainment() {
+export default function Entertainment() {
   return (
     <AuthProvider>
     <div className="flex flex-col min-h-screen">
