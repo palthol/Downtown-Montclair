@@ -1,69 +1,121 @@
-import { createContext, useContext, useEffect, useState, useMemo } from 'react';
-import type { ReactNode } from 'react';
+// In context/AuthContext.tsx
+
+import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import type { Session, User } from '@supabase/supabase-js';
 import { supabase } from '~/supabase/supabaseClient';
 
-export interface UserProfile {
+// Define the profile type based on your database schema
+type Profile = {
   id: string;
   email: string;
-  accountType?: 'personal' | 'business';
-  name?: string;
-  profilePicture?: string;
-  pronouns?: string;
-  address?: string;
-  businessImages?: string[];
-  creationDate?: string;
-  socialMedia?: string;
-}
+  username: string;
+  display_name?: string;
+  bio?: string;
+  profile_picture_url?: string;
+  social_links?: any;
+  created_at?: string;
+  updated_at?: string;
+};
 
-export interface AuthContextType {
-  readonly user: UserProfile | null;
-  readonly loading: boolean;
-  readonly error: string | null;
-  readonly setUser: (user: UserProfile | null) => void;
+interface AuthContextType {
+  session: Session | null;
+  user: User | null;
+  profile: Profile | null;
+  loading: boolean;
+  refreshProfile: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
+  session: null,
   user: null,
+  profile: null,
   loading: true,
-  error: null,
-  setUser: () => {},
+  refreshProfile: async () => {},
 });
 
-export const useAuth = () => useContext(AuthContext);
-
-export function AuthProvider({ children }: { children: ReactNode }): React.ReactElement {
-  const [user, setUser] = useState<UserProfile | null>(null);
+export function AuthProvider({ children }: { children: ReactNode }) {
+  const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Subscribe to auth state changes from Supabase
-    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log("onAuthStateChange event (expected values like SIGN_IN, SIGN_OUT, etc.):", event);
-      console.log("onAuthStateChange session (expected: Session object with user data if authenticated):", session);
+    // Get initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      
       if (session?.user) {
-        // Optionally, fetch extra profile details as needed
-        setUser({
-          id: session.user.id,
-          email: session.user.email ?? '',
-          
-        });
+        fetchProfile(session.user.id);
       } else {
-        setUser(null);
-        console.log("No session found - user is set to null.");
+        setLoading(false);
       }
-      setLoading(false);
     });
 
-    // Cleanup the listener on unmount
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        console.log('Auth state changed:', event);
+        setSession(session);
+        setUser(session?.user ?? null);
+        
+        if (session?.user) {
+          await fetchProfile(session.user.id);
+        } else {
+          setProfile(null);
+          setLoading(false);
+        }
+      }
+    );
+
     return () => {
-      authListener?.subscription?.unsubscribe();
+      subscription.unsubscribe();
     };
   }, []);
 
-  // Wrap the context value in useMemo to avoid unnecessary re-renders
-  const value = useMemo(() => ({ user, loading, error, setUser }), [user, loading, error]);
+  // Function to fetch user profile
+  async function fetchProfile(userId: string) {
+    try {
+      setLoading(true);
+      console.log('Fetching profile for user:', userId);
+      
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', userId)
+        .single();
+      
+      if (error) {
+        console.error('Error fetching profile:', error);
+        setProfile(null);
+      } else {
+        console.log('Profile fetched successfully:', data);
+        setProfile(data as Profile);
+      }
+    } catch (error) {
+      console.error('Unexpected error fetching profile:', error);
+      setProfile(null);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // Function to manually refresh profile data
+  async function refreshProfile() {
+    if (user?.id) {
+      await fetchProfile(user.id);
+    }
+  }
+
+  const value = {
+    session,
+    user,
+    profile,
+    loading,
+    refreshProfile,
+  };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
+export const useAuth = () => useContext(AuthContext);
