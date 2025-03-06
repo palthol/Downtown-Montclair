@@ -150,7 +150,7 @@ export default function NavBar(): React.ReactElement {
     </div>
     
     {/* Desktop: Text logo for larger screens (>= 1025px) */}
-    <div className="hidden xl:flex bg-black rounded-lg px-4 py-2 items-center justify-center">
+    <div className="hidden xl:flex bg-[#1F3B73] rounded-lg px-4 py-2 items-center justify-center">
       <span 
         className="text-white text-xl font-bold tracking-widest"
         style={{ 

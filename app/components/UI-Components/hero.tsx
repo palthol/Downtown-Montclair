@@ -105,7 +105,7 @@ export default function Hero() {
           )}
           
           {/* Always show Create Event button */}
-          <button
+          {/* <button
     onClick={() => handleNavigation('/food-drink')}
     className="bg-white text-[#1F3B73] font-semibold px-8 py-4 rounded shadow-lg hover:shadow-xl transition duration-300"
   >
@@ -124,7 +124,7 @@ export default function Hero() {
     className="bg-white text-[#1F3B73] font-semibold px-8 py-4 rounded shadow-lg hover:shadow-xl transition duration-300"
   >
     Sleepy?
-  </button>
+  </button> */}
  
         </div>
       </div>
