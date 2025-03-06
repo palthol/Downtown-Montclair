@@ -63,7 +63,7 @@ export default function EventList() {
     <section className="pt-12 pb-12">
       <div className="container mx-auto">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-3xl font-bold text-white">Events</h2>
+          <h2 className="text-3xl font-bold text-black">Events</h2>
           <select
             value={eventType}
             onChange={(e) => setEventType(e.target.value)}

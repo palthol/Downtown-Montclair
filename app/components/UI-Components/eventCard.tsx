@@ -19,7 +19,7 @@ export default function EventCard({ event }: Props) {
         alt={event.title}
         className="w-full h-40 object-cover rounded-md mb-4"
       />
-      <div className="mb-2 text-xs text-gray-500 uppercase">Article</div>
+      <div className="mb-2 text-xs text-gray-500 uppercase">Events</div>
       <h3
         className="text-2xl font-bold text-[#1F3B73] mb-2"
         style={{ fontFamily: 'var(--font-headline)' }}
