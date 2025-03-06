@@ -132,7 +132,7 @@ export default function NavBar(): React.ReactElement {
 <div className="flex-1">
   <Link to="/" className="inline-block">
     {/* Mobile: Black background container with PNG logo (< 1025px) */}
-    <div className="xl:hidden bg-black rounded-lg p-2 flex items-center justify-center">
+    <div className="xl:hidden bg-[#1F3B73] rounded-lg p-2 flex items-center justify-center">
       <img 
         src="/dwntwn white.PNG" 
         alt="Downtown Montclair Logo" 
