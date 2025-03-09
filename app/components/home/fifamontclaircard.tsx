@@ -48,17 +48,17 @@ export default function FIFAMontclairCard() {
   return (
     <>
       {/* FIFA Montclair Event Card */}
-      <div 
-        className="bg-white rounded-lg shadow hover:shadow-xl hover:scale-[1.02] transition duration-300 cursor-pointer overflow-hidden"
-        onClick={() => setIsModalOpen(true)}
-        aria-label="FIFA Montclair event details"
-      >
+      <button 
+  className="w-full text-left bg-white rounded-lg shadow hover:shadow-xl hover:scale-[1.02] transition duration-300 overflow-hidden"
+  onClick={() => setIsModalOpen(true)}
+  aria-label="FIFA Montclair event details"
+>
         {/* Card Image with overlay for "Coming Soon" */}
         <div className="relative">
           <img
             src="/fifamontclair.jpg"
             alt="FIFA Montclair"
-            className="w-full h-48 object-cover"
+            className="w-full h-80 object-cover"
           />
           <div className="absolute inset-0 bg-opacity-40 flex items-center justify-center">
            
@@ -90,7 +90,7 @@ export default function FIFAMontclairCard() {
             More information coming soon
           </div>
         </div>
-      </div>
+      </button>
 
       {/* Modal Overlay - only visible when modal is open */}
       {isModalOpen && (
