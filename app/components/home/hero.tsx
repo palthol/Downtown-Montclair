@@ -13,9 +13,9 @@ export default function Hero() {
   
   // Images for the carousel
   const carouselImages = [
-    '/DM-1.jpg',
+    '/DM-3.jpeg',
     '/DM-2.jpeg',
-    '/DM-3.jpeg'
+    '/DM-1.jpg'
   ];
 
   // Handle navigation without Remix
@@ -98,7 +98,7 @@ export default function Hero() {
           {!user && (
             <button
               onClick={() => handleNavigation('/auth')}
-              className="bg-white text-[#1F3B73] font-semibold px-8 py-4 rounded shadow-lg hover:shadow-xl transition duration-300"
+              className="bg-white text-black font-semibold px-8 py-4 rounded shadow-lg hover:shadow-xl transition duration-300"
             >
               Sign Up
             </button>

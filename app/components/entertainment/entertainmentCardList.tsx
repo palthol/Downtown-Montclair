@@ -77,15 +77,15 @@ export default function EntertainmentCardList() {
 
   return (
     // Outermost container with a darkened background and outline.
-    <div className="bg-gray-300 outline-2 outline-[#1F3B73] p-4 rounded">
+    <div className="bg-gray-300 outline-2 outline-black p-4 rounded">
       {/* Filter buttons */}
       <div className="mb-4 flex flex-wrap gap-2">
         <button
           onClick={() => setSelectedGenre("all")}
-          className={`px-4 py-2 rounded border border-[#1F3B73] transition ${
+          className={`px-4 py-2 rounded border border-black transition ${
             selectedGenre === "all"
-              ? "bg-[#1F3B73] text-white"
-              : "bg-white text-[#1F3B73]"
+              ? "bg-black text-white"
+              : "bg-white text-black"
           }`}
         >
           All
@@ -94,10 +94,10 @@ export default function EntertainmentCardList() {
           <button
             key={genre}
             onClick={() => setSelectedGenre(genre)}
-            className={`px-4 py-2 rounded border border-[#1F3B73] transition ${
+            className={`px-4 py-2 rounded border border-black transition ${
               selectedGenre === genre
-                ? "bg-[#1F3B73] text-white"
-                : "bg-white text-[#1F3B73]"
+                ? "bg-black text-white"
+                : "bg-white text-black"
             }`}
           >
             {genre.charAt(0).toUpperCase() + genre.slice(1)}

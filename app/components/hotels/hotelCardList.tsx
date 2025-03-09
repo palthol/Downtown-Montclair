@@ -147,7 +147,7 @@ export default function HotelList({ pageSize = 6 }: HotelListProps) {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#1F3B73]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-black"></div>
       </div>
     );
   }
@@ -162,7 +162,7 @@ export default function HotelList({ pageSize = 6 }: HotelListProps) {
   }
 
   return (
-    <div className="bg-gray-300 outline-2 outline-[#1F3B73] p-4 rounded">
+    <div className="bg-gray-300 outline-2 outline-black p-4 rounded">
       {/* Search and Filters */}
       <div className="mb-6 space-y-4">
         {/* Search box */}
@@ -170,7 +170,7 @@ export default function HotelList({ pageSize = 6 }: HotelListProps) {
           <input
             type="text"
             placeholder="Search hotels..."
-            className="w-full p-2 rounded border border-[#1F3B73]"
+            className="w-full p-2 rounded border border-black"
             value={searchTerm}
             onChange={handleSearchChange}
           />
@@ -178,15 +178,15 @@ export default function HotelList({ pageSize = 6 }: HotelListProps) {
         
         {/* Star Rating Filter */}
         <div className="flex flex-wrap gap-2">
-          <span className="font-bold text-[#1F3B73]">
+          <span className="font-bold text-black">
             Filter by Star Rating:
           </span>
           <button
             onClick={() => setSelectedRating("all")}
-            className={`px-4 py-2 rounded border border-[#1F3B73] transition ${
+            className={`px-4 py-2 rounded border border-black transition ${
               selectedRating === "all"
-                ? "bg-[#1F3B73] text-white"
-                : "bg-white text-[#1F3B73]"
+                ? "bg-black text-white"
+                : "bg-white text-black"
             }`}
           >
             All
@@ -195,10 +195,10 @@ export default function HotelList({ pageSize = 6 }: HotelListProps) {
             <button
               key={rating}
               onClick={() => setSelectedRating(rating)}
-              className={`px-4 py-2 rounded border border-[#1F3B73] transition ${
+              className={`px-4 py-2 rounded border border-black transition ${
                 selectedRating === rating
-                  ? "bg-[#1F3B73] text-white"
-                  : "bg-white text-[#1F3B73]"
+                  ? "bg-black text-white"
+                  : "bg-white text-black"
               }`}
             >
               {rating} ★
@@ -208,43 +208,43 @@ export default function HotelList({ pageSize = 6 }: HotelListProps) {
         
         {/* Price Filter */}
         <div className="flex flex-wrap gap-2">
-          <span className="font-bold text-[#1F3B73]">Filter by Price:</span>
+          <span className="font-bold text-black">Filter by Price:</span>
           <button
             onClick={() => setSelectedPrice("all")}
-            className={`px-4 py-2 rounded border border-[#1F3B73] transition ${
+            className={`px-4 py-2 rounded border border-black transition ${
               selectedPrice === "all"
-                ? "bg-[#1F3B73] text-white"
-                : "bg-white text-[#1F3B73]"
+                ? "bg-black text-white"
+                : "bg-white text-black"
             }`}
           >
             All
           </button>
           <button
             onClick={() => setSelectedPrice("budget")}
-            className={`px-4 py-2 rounded border border-[#1F3B73] transition ${
+            className={`px-4 py-2 rounded border border-black transition ${
               selectedPrice === "budget"
-                ? "bg-[#1F3B73] text-white"
-                : "bg-white text-[#1F3B73]"
+                ? "bg-black text-white"
+                : "bg-white text-black"
             }`}
           >
             Budget
           </button>
           <button
             onClick={() => setSelectedPrice("midrange")}
-            className={`px-4 py-2 rounded border border-[#1F3B73] transition ${
+            className={`px-4 py-2 rounded border border-black transition ${
               selectedPrice === "midrange"
-                ? "bg-[#1F3B73] text-white"
-                : "bg-white text-[#1F3B73]"
+                ? "bg-black text-white"
+                : "bg-white text-black"
             }`}
           >
             Midrange
           </button>
           <button
             onClick={() => setSelectedPrice("premium")}
-            className={`px-4 py-2 rounded border border-[#1F3B73] transition ${
+            className={`px-4 py-2 rounded border border-black transition ${
               selectedPrice === "premium"
-                ? "bg-[#1F3B73] text-white"
-                : "bg-white text-[#1F3B73]"
+                ? "bg-black text-white"
+                : "bg-white text-black"
             }`}
           >
             Premium
@@ -279,10 +279,10 @@ export default function HotelList({ pageSize = 6 }: HotelListProps) {
         <button
           onClick={goToPrevPage}
           disabled={currentPage === 1}
-          className={`px-4 py-2 rounded border border-[#1F3B73] ${
+          className={`px-4 py-2 rounded border border-black ${
             currentPage === 1 
               ? "bg-gray-200 text-gray-500 cursor-not-allowed" 
-              : "bg-white text-[#1F3B73] hover:bg-[#1F3B73] hover:text-white"
+              : "bg-white text-black hover:bg-black hover:text-white"
           }`}
         >
           Previous
@@ -291,10 +291,10 @@ export default function HotelList({ pageSize = 6 }: HotelListProps) {
         <button
           onClick={goToNextPage}
           disabled={!hasMore}
-          className={`px-4 py-2 rounded border border-[#1F3B73] ${
+          className={`px-4 py-2 rounded border border-black ${
             !hasMore
               ? "bg-gray-200 text-gray-500 cursor-not-allowed" 
-              : "bg-white text-[#1F3B73] hover:bg-[#1F3B73] hover:text-white"
+              : "bg-white text-black hover:bg-black hover:text-white"
           }`}
         >
           Next

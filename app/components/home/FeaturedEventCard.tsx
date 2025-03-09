@@ -22,7 +22,7 @@ export default function FeaturedEventCard({ event }: FeaturedEventCardProps) {
       <div className="p-6">
         <div className="mb-2 text-xs text-gray-500 uppercase">Featured Event</div>
         <h3
-          className="text-3xl font-bold text-[#1F3B73] mb-2"
+          className="text-3xl font-bold text-black mb-2"
           style={{ fontFamily: 'var(--font-headline)' }}
         >
           {event.title}

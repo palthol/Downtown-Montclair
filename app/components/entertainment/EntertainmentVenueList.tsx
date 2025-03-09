@@ -134,7 +134,7 @@ export default function EntertainmentVenueList({ pageSize = 6 }: EntertainmentVe
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#1F3B73]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-black"></div>
       </div>
     );
   }
@@ -149,7 +149,7 @@ export default function EntertainmentVenueList({ pageSize = 6 }: EntertainmentVe
   }
 
   return (
-    <div className="bg-gray-300 outline-2 outline-[#1F3B73] p-4 rounded">
+    <div className="bg-gray-300 outline-2 outline-black p-4 rounded">
       {/* Search and Filters */}
       <div className="mb-6 space-y-4">
         {/* Search box */}
@@ -157,7 +157,7 @@ export default function EntertainmentVenueList({ pageSize = 6 }: EntertainmentVe
           <input
             type="text"
             placeholder="Search venues..."
-            className="w-full p-2 rounded border border-[#1F3B73]"
+            className="w-full p-2 rounded border border-black"
             value={searchTerm}
             onChange={handleSearchChange}
           />
@@ -167,10 +167,10 @@ export default function EntertainmentVenueList({ pageSize = 6 }: EntertainmentVe
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setSelectedVenueType("all")}
-            className={`px-4 py-2 rounded border border-[#1F3B73] transition ${
+            className={`px-4 py-2 rounded border border-black transition ${
               selectedVenueType === "all"
-                ? "bg-[#1F3B73] text-white"
-                : "bg-white text-[#1F3B73]"
+                ? "bg-black text-white"
+                : "bg-white text-black"
             }`}
           >
             All Venues
@@ -179,10 +179,10 @@ export default function EntertainmentVenueList({ pageSize = 6 }: EntertainmentVe
             <button
               key={venueType}
               onClick={() => setSelectedVenueType(venueType)}
-              className={`px-4 py-2 rounded border border-[#1F3B73] transition ${
+              className={`px-4 py-2 rounded border border-black transition ${
                 selectedVenueType === venueType
-                  ? "bg-[#1F3B73] text-white"
-                  : "bg-white text-[#1F3B73]"
+                  ? "bg-black text-white"
+                  : "bg-white text-black"
               }`}
             >
               {venueType.charAt(0).toUpperCase() + venueType.slice(1)}
@@ -218,10 +218,10 @@ export default function EntertainmentVenueList({ pageSize = 6 }: EntertainmentVe
         <button
           onClick={goToPrevPage}
           disabled={currentPage === 1}
-          className={`px-4 py-2 rounded border border-[#1F3B73] ${
+          className={`px-4 py-2 rounded border border-black ${
             currentPage === 1 
               ? "bg-gray-200 text-gray-500 cursor-not-allowed" 
-              : "bg-white text-[#1F3B73] hover:bg-[#1F3B73] hover:text-white"
+              : "bg-white text-black hover:bg-black hover:text-white"
           }`}
         >
           Previous
@@ -230,10 +230,10 @@ export default function EntertainmentVenueList({ pageSize = 6 }: EntertainmentVe
         <button
           onClick={goToNextPage}
           disabled={!hasMore}
-          className={`px-4 py-2 rounded border border-[#1F3B73] ${
+          className={`px-4 py-2 rounded border border-black ${
             !hasMore
               ? "bg-gray-200 text-gray-500 cursor-not-allowed" 
-              : "bg-white text-[#1F3B73] hover:bg-[#1F3B73] hover:text-white"
+              : "bg-white text-black hover:bg-black hover:text-white"
           }`}
         >
           Next

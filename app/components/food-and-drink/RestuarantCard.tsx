@@ -42,7 +42,7 @@ type RestaurantCardProps = {
         <div className="p-4">
           {/* Restaurant name */}
           <h3
-            className="text-xl font-bold text-[#1F3B73]"
+            className="text-xl font-bold text-black"
             style={{ fontFamily: "Montserrat, sans-serif" }}
           >
             {title}
@@ -76,7 +76,7 @@ type RestaurantCardProps = {
           <div className="mt-4 flex flex-col sm:flex-row gap-2">
             <button
               type="button"
-              className="flex-1 border border-[#1F3B73] text-[#1F3B73] py-2 px-4 rounded hover:bg-[#1F3B73] hover:text-white transition-colors duration-300"
+              className="flex-1 border border-black text-black py-2 px-4 rounded hover:bg-black hover:text-white transition-colors duration-300"
             >
               Learn More
             </button>
@@ -84,7 +84,7 @@ type RestaurantCardProps = {
               href={createGoogleMapsUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 bg-[#1F3B73] text-white py-2 px-4 rounded text-center hover:bg-[#152a54] transition-colors duration-300"
+              className="flex-1 bg-black text-white py-2 px-4 rounded text-center hover:bg-[#152a54] transition-colors duration-300"
             >
               View on Maps
             </a>

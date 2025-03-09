@@ -1,9 +1,8 @@
 import type { Route } from "./+types/entertainment";
-import NavBar from "~/components/UI-Components/navbar";
-import Footer from "~/components/UI-Components/footer";
-// import EntertainmentCardList from "~/components/UI-Components/entertainmentCardList";
+import NavBar from "~/components/1general/navbar";
+import Footer from "~/components/1general/footer";
 import { AuthProvider } from "~/context/AuthContext";
-import EntertainmentVenueList from "~/components/UI-Components/EntertainmentVenueList";
+import EntertainmentVenueList from "~/components/entertainment/EntertainmentVenueList";
 
 
 export function meta({}: Route.MetaArgs) {
@@ -22,7 +21,7 @@ export default function Entertainment() {
       {/* Brief intro / hero section */}
       <section className="bg-gray-100 py-12">
         <div className="container mx-auto px-6">
-          <h1 className="text-3xl font-bold text-[#1F3B73]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          <h1 className="text-3xl font-bold text-black" style={{ fontFamily: 'Montserrat, sans-serif' }}>
             Explore Downtown Montclair
           </h1>
           <p className="mt-4 text-gray-700" style={{ fontFamily: 'Open Sans, sans-serif' }}>

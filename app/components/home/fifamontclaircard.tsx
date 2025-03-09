@@ -60,10 +60,8 @@ export default function FIFAMontclairCard() {
             alt="FIFA Montclair"
             className="w-full h-48 object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-            <span className="bg-[#00C2A0] text-white py-1 px-4 rounded-full text-sm font-semibold transform -rotate-12">
-              Coming Soon
-            </span>
+          <div className="absolute inset-0 bg-opacity-40 flex items-center justify-center">
+           
           </div>
         </div>
         
@@ -71,7 +69,7 @@ export default function FIFAMontclairCard() {
         <div className="p-6">
           {/* Event Title */}
           <h3 
-            className="text-2xl font-bold text-[#1F3B73] mb-2"
+            className="text-2xl font-bold text-black mb-2"
             style={{ fontFamily: 'var(--font-headline)' }}
           >
             FIFA Montclair
@@ -131,7 +129,7 @@ export default function FIFAMontclairCard() {
             <div className="p-6 md:p-8">
               {/* Event Title */}
               <h3 
-                className="text-2xl md:text-3xl font-bold text-[#1F3B73] mb-2"
+                className="text-2xl md:text-3xl font-bold text-black mb-2"
                 style={{ fontFamily: 'var(--font-headline)' }}
               >
                 FIFA Montclair

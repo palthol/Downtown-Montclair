@@ -1,7 +1,7 @@
 import type { Route } from "./+types/hotel";
-import NavBar from "~/components/UI-Components/navbar";
-import Footer from "~/components/UI-Components/footer";
-import HotelCardList from "~/components/UI-Components/hotelCardList";
+import NavBar from "~/components/1general/navbar";
+import Footer from "~/components/1general/footer";
+import HotelCardList from "~/components/hotels/hotelCardList";
 import { AuthProvider } from "~/context/AuthContext";
 
 export function meta({}: Route.MetaArgs) {
