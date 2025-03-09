@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useAuth } from '~/context/AuthContext';
+import { useAuth } from '~/context/authContext';
 import { useNavigate } from 'react-router-dom'; // Using React Router instead of Remix
 
 export default function Hero() {

@@ -2,7 +2,7 @@ import type { Route } from "./+types/hotel";
 import NavBar from "~/components/1general/navbar";
 import Footer from "~/components/1general/footer";
 import HotelCardList from "~/components/hotels/hotelCardList";
-import { AuthProvider } from "~/context/AuthContext";
+import { AuthProvider } from "~/context/authContext";
 
 export function meta({}: Route.MetaArgs) {
   return [

@@ -1,8 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '~/supabase/supabaseClient';
-
-type AuthTab = 'login' | 'register';
+import type { AuthTab } from '~/types/auth';
+import { loginUser, registerUser } from '~/services/authService';
+import { validateEmail, validatePassword, validateUsername } from '~/utils/validation';
+import FormField from './authFormField';
 
 export default function AuthPage(): React.ReactElement {
   const [activeTab, setActiveTab] = useState<AuthTab>('login');
@@ -88,77 +89,18 @@ function LoginForm(): React.ReactElement {
     setLoading(true);
     setError(null);
 
-    try {
-      // Step 1: Authenticate the user
-      console.log("Attempting to sign in with email:", email);
-      const { data, error: authError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      
-      if (authError) {
-        console.error("Authentication error:", authError);
-        throw new Error(authError.message || 'Login failed. Please try again.');
-      }
-      
-      if (!data || !data.session) {
-        console.error("No session returned after login");
-        throw new Error('Login succeeded but no session was created. Please try again.');
-      }
-
-      console.log("Login successful, checking for user profile...");
-      
-      // Step 2: Verify that a profile exists for this user
-      const { data: profileData, error: profileError } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', data.user.id)
-        .single();
-      
-      if (profileError) {
-        console.error("Profile fetch error:", profileError);
-        
-        // Check if it's a "not found" error or something else
-        if (profileError.code === "PGRST116") {
-          console.warn("Profile not found, attempting to create one");
-          
-          // Try to create a profile as fallback
-          const { error: createProfileError } = await supabase
-            .from('profiles')
-            .insert([{
-              id: data.user.id,
-              email: email,
-              username: `user_${data.user.id.substring(0, 8)}`,
-            }]);
-            
-          if (createProfileError) {
-            console.error("Failed to create missing profile:", createProfileError);
-            setError("Account exists but profile creation failed. Please contact support.");
-            setLoading(false);
-            return;
-          } else {
-            console.log("Created new profile successfully");
-          }
-        } else {
-          // Not a "not found" error, something else is wrong
-          setError("Account exists but profile access failed. Please contact support.");
-          setLoading(false);
-          return;
-        }
-      } else {
-        console.log("Profile found:", profileData);
-      }
-      
-      // Login successful, navigate home
-      console.log("Login complete, navigating to home page");
-      navigate('/');
-      
-    } catch (err) {
-      console.error("Login error:", err);
-      setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
-    } finally {
+    // Using service instead of direct Supabase calls
+    const result = await loginUser({ email, password });
+    
+    if (!result.success) {
+      setError(result.error ?? 'Login failed. Please try again.');
       setLoading(false);
+      return;
     }
+    
+    // Login successful, navigate home
+    navigate('/');
+    setLoading(false);
   };
 
   return (
@@ -168,25 +110,26 @@ function LoginForm(): React.ReactElement {
           {error}
         </div>
       )}
-      <input
+      
+      <FormField 
         ref={emailRef}
         type="email"
         placeholder="Email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={setEmail}
         autoComplete="email"
-        className="w-full border p-3 sm:p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
         required
       />
-      <input
+      
+      <FormField 
         type="password"
         placeholder="Password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={setPassword}
         autoComplete="current-password"
-        className="w-full border p-3 sm:p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
         required
       />
+      
       <button
         type="submit"
         disabled={loading}
@@ -207,101 +150,60 @@ function RegistrationForm(): React.ReactElement {
   const [displayName, setDisplayName] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  
+  const emailRef = useRef<HTMLInputElement>(null);
+
+  // Focus email field on component mount
+  useEffect(() => {
+    emailRef.current?.focus();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic validation remains the same
-    if (password !== confirmPassword) {
-      setError("Passwords don't match");
+    const emailCheck = validateEmail(email);
+    if (!emailCheck.valid) {
+      setError(emailCheck.error ?? "Invalid email"); // Use fallback message
       return;
     }
     
-    if (password.length < 6) {
-      setError("Password must be at least 6 characters");
+    // Validate username
+    const usernameCheck = validateUsername(username);
+    if (!usernameCheck.valid) {
+      setError(usernameCheck.error ?? "Invalid username");
+      return;
+    }
+    
+    // Validate password
+    const passwordCheck = validatePassword(password, confirmPassword);
+    if (!passwordCheck.valid) {
+      setError(passwordCheck.error ?? "Invalid password");
       return;
     }
     
     setLoading(true);
     setError(null);
     
-    try {
-      // Username check remains the same
-      console.log("Checking username availability");
-      const { data: existingUsers, error: usernameCheckError } = await supabase
-        .from('profiles')
-        .select('username')
-        .eq('username', username);
-      
-      if (usernameCheckError) {
-        console.warn("Username check error:", usernameCheckError);
-      }
-      
-      if (existingUsers && existingUsers.length > 0) {
-        throw new Error("Username already taken. Please choose another.");
-      }
-  
-      // Auth user creation remains the same
-      console.log("Creating new auth user");
-      const { data: authData, error: signUpError } = await supabase.auth.signUp({
-        email,
-        password,
-      });
-      
-      if (signUpError) {
-        throw new Error(signUpError.message || "Registration failed. Please try again.");
-      }
-      
-      if (!authData?.user?.id) {
-        throw new Error("Auth account created but user ID is missing");
-      }
-      
-      console.log("Auth user created with ID:", authData.user.id);
-      
-      // Create profile remains the same
-      console.log("Creating profile for new user");
-      const { error: profileError } = await supabase.from('profiles').insert({
-        id: authData.user.id,
-        email: email,
-        username: username,
-        display_name: displayName || null,
-        created_at: new Date().toISOString()
-      });
-      
-      if (profileError) {
-        console.error("Profile creation error:", profileError);
-        // Alert but don't prevent continuation
-        alert("Account created, but profile setup had issues. Some features may be limited until resolved.");
-      }
-      
-      // Success! Now let's automatically sign them in instead of making them log in again
-      console.log("Signing in the new user automatically");
-      const { error: signInError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      
-      if (signInError) {
-        console.error("Auto sign-in failed:", signInError);
-        // If auto-login fails, redirect to login screen
-        alert("Account created successfully! Please log in with your new credentials.");
-        navigate('/auth');
-      } else {
-        // Success! User is registered AND logged in
-        console.log("Registration and login complete!");
-        // Redirect to home or welcome page
-        navigate('/'); // Or '/welcome' if you have a welcome page
-      }
-      
-    } catch (err) {
-      console.error("Registration error:", err);
-      setError(err instanceof Error ? err.message : 'Registration failed. Please try again.');
-    } finally {
+    // Use registration service
+    const registrationResult = await registerUser({
+      email,
+      username,
+      password,
+      confirmPassword,
+      displayName
+    });
+    
+    if (!registrationResult.success) {
+      setError(registrationResult.error ?? "Registration failed");
       setLoading(false);
+      return;
     }
+    
+    // Success! User is registered
+    navigate('/');
+    setLoading(false);
   };
 
-  // Return the form...
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {error && (
@@ -310,79 +212,50 @@ function RegistrationForm(): React.ReactElement {
         </div>
       )}
       
-      <div>
-        <label htmlFor="email" className="block text-gray-700 font-medium mb-1">
-          Email
-        </label>
-        <input
-        id="email"
+      <FormField
+        ref={emailRef}
         type="email"
+        label="Email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        onChange={setEmail}
         autoComplete="email"
         required
-        />
-      </div>
+      />
       
-      <div>
-        <label htmlFor="username" className="block text-gray-700 font-medium mb-1">
-          Username
-        </label>
-        <input
-         id="username"
-         type="text"
-         value={username}
-         onChange={(e) => setUsername(e.target.value)}
-         className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-         autoComplete="username"
-         required
-        />
-      </div>
+      <FormField
+        type="text"
+        label="Username"
+        value={username}
+        onChange={setUsername}
+        autoComplete="username"
+        required
+      />
       
-      <div>
-        <label htmlFor="displayName" className="block text-gray-700 font-medium mb-1">
-          Display Name (optional)
-        </label>
-        <input
-   id="displayName"
-   type="text"
-   value={displayName}
-   onChange={(e) => setDisplayName(e.target.value)}
-   className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-   autoComplete="name"
-        />
-      </div>
+      <FormField
+        type="text"
+        label="Display Name (optional)"
+        value={displayName}
+        onChange={setDisplayName}
+        autoComplete="name"
+      />
       
-      <div>
-        <label htmlFor="password" className="block text-gray-700 font-medium mb-1">
-          Password
-        </label>
-        <input
-         id="password"
-         type="password"
-         value={password}
-         onChange={(e) => setPassword(e.target.value)}
-         className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-         autoComplete="new-password"
-         required
-        />
-      </div>
+      <FormField
+        type="password"
+        label="Password"
+        value={password}
+        onChange={setPassword}
+        autoComplete="new-password"
+        required
+      />
       
-      <div>
-        <label htmlFor="confirmPassword" className="block text-gray-700 font-medium mb-1">
-          Confirm Password
-        </label>
-        <input
-         id="confirmPassword"
-         type="password"
-         value={confirmPassword}
-         onChange={(e) => setConfirmPassword(e.target.value)}
-         className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-         autoComplete="new-password"
-         required
-        />
-      </div>
+      <FormField
+        type="password"
+        label="Confirm Password"
+        value={confirmPassword}
+        onChange={setConfirmPassword}
+        autoComplete="new-password"
+        required
+      />
       
       <button
         type="submit"

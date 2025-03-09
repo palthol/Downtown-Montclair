@@ -3,7 +3,7 @@ import NavBar from "~/components/1general/navbar";
 import Footer from "~/components/1general/footer";
 import Hero from "~/components/home/hero";
 import EventList from "~/components/home/eventList";
-import { AuthProvider } from "~/context/AuthContext";
+import { AuthProvider } from "~/context/authContext";
 
 export function meta({}: Route.MetaArgs) {
   return [

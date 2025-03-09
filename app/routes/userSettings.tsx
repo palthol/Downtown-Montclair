@@ -3,7 +3,7 @@ import type { FormEvent, ChangeEvent } from 'react';
 import type { Route } from "./+types/userSettings";
 import NavBar from "~/components/1general/navbar";
 import Footer from "~/components/1general/footer";
-import { AuthProvider } from "~/context/AuthContext";
+import { AuthProvider } from "~/context/authContext";
 import { supabase } from "~/supabase/supabaseClient";
 
 // Define types for user and profile

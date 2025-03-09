@@ -1,7 +1,7 @@
 import type { Route } from "./+types/maps";
 import NavBar from "~/components/1general/navbar";
 import Footer from "~/components/1general/footer";
-import { AuthProvider } from "~/context/AuthContext";
+import { AuthProvider } from "~/context/authContext";
 
 export function meta({}: Route.MetaArgs) {
   return [

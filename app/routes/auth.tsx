@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Route } from './+types/auth'; // adjust or remove types as needed
-import AuthPage from '~/components/auth/authPage';
+import AuthPage from '~/components//auth/authPage';
 
 export function meta({}: Route.MetaArgs) {
   return [

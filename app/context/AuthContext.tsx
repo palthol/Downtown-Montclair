@@ -1,29 +1,12 @@
-// In context/AuthContext.tsx
-
-import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import type { Session, User } from '@supabase/supabase-js';
 import { supabase } from '~/supabase/supabaseClient';
+// Update import path to services folder
+import { fetchProfile } from '~/services/authService';
+import type { AuthContextType, AuthProviderProps } from '~/types/authContext';
+import type { Profile } from '~/types/profile';
 
-// Define the profile type based on your database schema
-type Profile = {
-  id: string;
-  email: string;
-  username: string;
-  display_name?: string;
-  bio?: string;
-  profile_picture_url?: string;
-  social_links?: any;
-  created_at?: string;
-  updated_at?: string;
-};
-
-interface AuthContextType {
-  session: Session | null;
-  user: User | null;
-  profile: Profile | null;
-  loading: boolean;
-  refreshProfile: () => Promise<void>;
-}
+// Remove duplicate type definitions - now imported from type files
 
 const AuthContext = createContext<AuthContextType>({
   session: null,
@@ -33,34 +16,52 @@ const AuthContext = createContext<AuthContextType>({
   refreshProfile: async () => {},
 });
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
+  // Refactored to use the auth service
+  async function loadProfile(userId: string) {
+    try {
+      setLoading(true);
+      const { success, data, error } = await fetchProfile(userId);
+      
+      if (success && data) {
+        setProfile(data as Profile);
+      } else {
+        console.error('Error loading profile:', error);
+        setProfile(null);
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
 
   useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    // Auth state initialization logic
+    async function initAuth() {
+      const { data: { session } } = await supabase.auth.getSession();
       setSession(session);
       setUser(session?.user ?? null);
       
       if (session?.user) {
-        fetchProfile(session.user.id);
+        await loadProfile(session.user.id);
       } else {
         setLoading(false);
       }
-    });
+    }
+    
+    initAuth();
 
-    // Listen for auth changes
+    // Auth state change listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        console.log('Auth state changed:', event);
         setSession(session);
         setUser(session?.user ?? null);
         
         if (session?.user) {
-          await fetchProfile(session.user.id);
+          await loadProfile(session.user.id);
         } else {
           setProfile(null);
           setLoading(false);
@@ -73,37 +74,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  // Function to fetch user profile
-  async function fetchProfile(userId: string) {
-    try {
-      setLoading(true);
-      console.log('Fetching profile for user:', userId);
-      
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', userId)
-        .single();
-      
-      if (error) {
-        console.error('Error fetching profile:', error);
-        setProfile(null);
-      } else {
-        console.log('Profile fetched successfully:', data);
-        setProfile(data as Profile);
-      }
-    } catch (error) {
-      console.error('Unexpected error fetching profile:', error);
-      setProfile(null);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  // Function to manually refresh profile data
+  // Manually refresh profile data
   async function refreshProfile() {
     if (user?.id) {
-      await fetchProfile(user.id);
+      await loadProfile(user.id);
     }
   }
 
