@@ -107,7 +107,7 @@ export default function NavBar(): React.ReactElement {
   function DefaultProfileIcon() {
     return (
       <svg
-        className="h-8 w-8 rounded-full border-2 border-blue-500 p-1"
+        className="h-8 w-8 rounded-full border-2 border-black p-1"
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -132,11 +132,11 @@ export default function NavBar(): React.ReactElement {
 <div className="flex-1">
   <Link to="/" className="inline-block">
     {/* Mobile: Black background container with PNG logo (< 1025px) */}
-    <div className="xl:hidden bg-[#1F3B73] rounded-lg p-2 flex items-center justify-center">
+    <div className="xl:hidden bg-black rounded-lg p-1 flex items-center justify-center">
       <img 
         src="/dwntwn white.PNG" 
         alt="Downtown Montclair Logo" 
-        className="h-8 object-contain"
+        className="h-16 object-contain" // Significantly increased from h-10 to h-16 (64px)
         onError={(e) => {
           // Fallback in case the image doesn't load
           console.error("Logo image failed to load");
@@ -150,12 +150,12 @@ export default function NavBar(): React.ReactElement {
     </div>
     
     {/* Desktop: Text logo for larger screens (>= 1025px) */}
-    <div className="hidden xl:flex bg-[#1F3B73] rounded-lg px-4 py-2 items-center justify-center">
+    <div className="hidden xl:flex bg-black rounded-lg px-4 py-2 items-center justify-center">
       <span 
         className="text-white text-xl font-bold tracking-widest"
         style={{ 
           fontFamily: "Montserrat, sans-serif",
-          letterSpacing: "0.1em" // 10% letter spacing (supplementing Tailwind's tracking-widest)
+          letterSpacing: "0.1em"
         }}
       >
         DWNTWN MONTCLAIR

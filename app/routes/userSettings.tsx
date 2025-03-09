@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'; 
 import type { FormEvent, ChangeEvent } from 'react';
 import type { Route } from "./+types/userSettings";
-import NavBar from "~/components/UI-Components/navbar";
-import Footer from "~/components/UI-Components/footer";
+import NavBar from "~/components/1general/navbar";
+import Footer from "~/components/1general/footer";
 import { AuthProvider } from "~/context/AuthContext";
 import { supabase } from "~/supabase/supabaseClient";
 

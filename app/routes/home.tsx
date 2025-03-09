@@ -1,9 +1,8 @@
 import type { Route } from "./+types/home";
-import NavBar from "~/components/UI-Components/navbar";
-import Footer from "~/components/UI-Components/footer";
-import Hero from "~/components/UI-Components/hero";
-import EventList from "~/components/UI-Components/eventList";
-import PostList from "~/components/UI-Components/postList";
+import NavBar from "~/components/1general/navbar";
+import Footer from "~/components/1general/footer";
+import Hero from "~/components/home/hero";
+import EventList from "~/components/home/eventList";
 import { AuthProvider } from "~/context/AuthContext";
 
 export function meta({}: Route.MetaArgs) {

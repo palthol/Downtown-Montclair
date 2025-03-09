@@ -128,7 +128,7 @@ const matchesCuisine = selectedCuisine === "all" ||
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#1F3B73]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-black"></div>
       </div>
     );
   }
@@ -143,7 +143,7 @@ const matchesCuisine = selectedCuisine === "all" ||
   }
 
   return (
-    <div className="bg-gray-300 outline-2 outline-[#1F3B73] p-4 rounded">
+    <div className="bg-gray-300 outline-2 outline-black p-4 rounded">
       {/* Search and Filters */}
       <div className="mb-6 space-y-4">
         {/* Search box */}
@@ -151,7 +151,7 @@ const matchesCuisine = selectedCuisine === "all" ||
           <input
             type="text"
             placeholder="Search restaurants..."
-            className="w-full p-2 rounded border border-[#1F3B73]"
+            className="w-full p-2 rounded border border-black"
             value={searchTerm}
             onChange={handleSearchChange}
           />
@@ -161,10 +161,10 @@ const matchesCuisine = selectedCuisine === "all" ||
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setSelectedCuisine("all")}
-            className={`px-4 py-2 rounded border border-[#1F3B73] transition ${
+            className={`px-4 py-2 rounded border border-black transition ${
               selectedCuisine === "all"
-                ? "bg-[#1F3B73] text-white"
-                : "bg-white text-[#1F3B73]"
+                ? "bg-black text-white"
+                : "bg-white text-black"
             }`}
           >
             All Cuisines
@@ -173,10 +173,10 @@ const matchesCuisine = selectedCuisine === "all" ||
             <button
               key={cuisine}
               onClick={() => setSelectedCuisine(cuisine)}
-              className={`px-4 py-2 rounded border border-[#1F3B73] transition ${
+              className={`px-4 py-2 rounded border border-black transition ${
                 selectedCuisine === cuisine
-                  ? "bg-[#1F3B73] text-white"
-                  : "bg-white text-[#1F3B73]"
+                  ? "bg-black text-white"
+                  : "bg-white text-black"
               }`}
             >
               {cuisine.charAt(0).toUpperCase() + cuisine.slice(1)}
@@ -210,10 +210,10 @@ const matchesCuisine = selectedCuisine === "all" ||
         <button
           onClick={goToPrevPage}
           disabled={currentPage === 1}
-          className={`px-4 py-2 rounded border border-[#1F3B73] ${
+          className={`px-4 py-2 rounded border border-black ${
             currentPage === 1 
               ? "bg-gray-200 text-gray-500 cursor-not-allowed" 
-              : "bg-white text-[#1F3B73] hover:bg-[#1F3B73] hover:text-white"
+              : "bg-white text-black hover:bg-black hover:text-white"
           }`}
         >
           Previous
@@ -222,10 +222,10 @@ const matchesCuisine = selectedCuisine === "all" ||
         <button
           onClick={goToNextPage}
           disabled={!hasMore}
-          className={`px-4 py-2 rounded border border-[#1F3B73] ${
+          className={`px-4 py-2 rounded border border-black ${
             !hasMore
               ? "bg-gray-200 text-gray-500 cursor-not-allowed" 
-              : "bg-white text-[#1F3B73] hover:bg-[#1F3B73] hover:text-white"
+              : "bg-white text-black hover:bg-black hover:text-white"
           }`}
         >
           Next

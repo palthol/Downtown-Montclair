@@ -24,13 +24,13 @@ export default function EventList() {
         {/* Event Type Selector */}
         <div className="flex justify-center mb-10">
           <button 
-            className={`px-6 py-2 mx-2 rounded-full ${eventType === "upcoming" ? "bg-[#1F3B73] text-white" : "bg-gray-200"}`}
+            className={`px-6 py-2 mx-2 rounded-full ${eventType === "upcoming" ? "bg-black text-white" : "bg-gray-200"}`}
             onClick={() => setEventType("upcoming")}
           >
             Upcoming
           </button>
           <button 
-            className={`px-6 py-2 mx-2 rounded-full ${eventType === "featured" ? "bg-[#1F3B73] text-white" : "bg-gray-200"}`}
+            className={`px-6 py-2 mx-2 rounded-full ${eventType === "featured" ? "bg-black text-white" : "bg-gray-200"}`}
             onClick={() => setEventType("featured")}
           >
             Featured

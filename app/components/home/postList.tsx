@@ -72,7 +72,7 @@ export default function PostList() {
           <select
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="p-2 bg-white text-[#1F3B73] rounded"
+            className="p-2 bg-white text-black rounded"
           >
             <option value="all">All Posts</option>
             <option value="reviews">Reviews</option>

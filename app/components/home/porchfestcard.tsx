@@ -101,7 +101,7 @@ export default function PorchfestCard() {
         <div className="p-6">
           {/* Event Title */}
           <h3 
-            className="text-2xl font-bold text-[#1F3B73] mb-2"
+            className="text-2xl font-bold text-black mb-2"
             style={{ fontFamily: 'var(--font-headline)' }}
           >
             Montclair PorchFest
@@ -121,7 +121,7 @@ export default function PorchfestCard() {
             {/* Visit Website Button */}
             <button
               onClick={visitWebsite}
-              className="inline-block bg-[#00C2A0] text-white font-semibold py-2 px-4 rounded hover:bg-[#00a38d] transition"
+              className="inline-block bg-black text-white font-semibold py-2 px-4 rounded hover:bg-[#00a38d] transition"
             >
               Visit Website
             </button>
@@ -129,7 +129,7 @@ export default function PorchfestCard() {
             {/* Shop PorchFest Button */}
             <button
               onClick={visitShop}
-              className="inline-block bg-[#1F3B73] text-white font-semibold py-2 px-4 rounded hover:bg-[#152a54] transition"
+              className="inline-block bg-black text-white font-semibold py-2 px-4 rounded hover:bg-[#152a54] transition"
             >
               Shop PorchFest
             </button>
@@ -231,7 +231,7 @@ export default function PorchfestCard() {
             <div className="p-6 md:p-8">
               {/* Event Title */}
               <h3 
-                className="text-2xl md:text-3xl font-bold text-[#1F3B73] mb-2"
+                className="text-2xl md:text-3xl font-bold text-black mb-2"
                 style={{ fontFamily: 'var(--font-headline)' }}
               >
                 Montclair PorchFest
@@ -253,7 +253,7 @@ export default function PorchfestCard() {
                   {/* Visit Website Button */}
                   <button
                     onClick={visitWebsite}
-                    className="inline-block bg-[#00C2A0] text-white font-semibold py-2 px-6 rounded hover:bg-[#00a38d] transition"
+                    className="inline-block bg-black text-white font-semibold py-2 px-6 rounded hover:bg-[#00a38d] transition"
                   >
                     Visit Website
                   </button>
@@ -261,7 +261,7 @@ export default function PorchfestCard() {
                   {/* Shop PorchFest Button */}
                   <button
                     onClick={visitShop}
-                    className="inline-block bg-[#1F3B73] text-white font-semibold py-2 px-6 rounded hover:bg-[#152a54] transition"
+                    className="inline-block bg-black text-white font-semibold py-2 px-6 rounded hover:bg-[#152a54] transition"
                   >
                     Shop PorchFest
                   </button>
