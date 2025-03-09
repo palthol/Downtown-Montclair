@@ -1,7 +1,7 @@
 import type { Route } from "./+types/entertainment";
 import NavBar from "~/components/1general/navbar";
 import Footer from "~/components/1general/footer";
-import { AuthProvider } from "~/context/authContext";
+import { AuthProvider } from "~/context/AuthContext";
 import EntertainmentVenueList from "~/components/entertainment/EntertainmentVenueList";
 
 

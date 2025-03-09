@@ -2,7 +2,7 @@ import type { Route } from "./+types/food";
 import NavBar from "~/components/1general/navbar";
 import Footer from "~/components/1general/footer";
 // import FoodCardList from "~/components/UI-Components/foodCardList";
-import { AuthProvider } from "~/context/authContext";
+import { AuthProvider } from "~/context/AuthContext";
 import RestaurantList from "~/components/food-and-drink/RestuarantList";
 
 export function meta({}: Route.MetaArgs) {
